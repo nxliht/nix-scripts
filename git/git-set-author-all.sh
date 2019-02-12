@@ -7,7 +7,7 @@ elif [[ $# == 1 || $# -gt 2 ]]; then
     echo "Usage $0 <new_name> <new_email>"
     exit 1
 else
-    echo 'Type the new to name'
+    echo 'Type the new name'
     read NEW_NAME
     echo 'Type the new email'
     read NEW_EMAIL  

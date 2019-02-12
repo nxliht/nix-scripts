@@ -2,7 +2,7 @@
 
 echo 'Type the name to be replaced'
 read OLD_NAME
-echo 'Type the new to name'
+echo 'Type the new name'
 read NEW_NAME
 echo 'Type the new email'
 read NEW_EMAIL
