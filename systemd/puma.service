@@ -1,0 +1,30 @@
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+# Uncomment for socket activation (see below)
+Requires=puma.socket
+
+[Service]
+# Foreground process (do not use --daemon in ExecStart or config.rb)
+Type=simple
+
+# Preferably configure a non-privileged user
+User=puma
+
+# The path to the your application code root directory.
+WorkingDirectory=<YOUR_APP_PATH>
+
+# Helpful for debugging socket activation, etc.
+# Environment=PUMA_DEBUG=1
+Environment=RAILS_ENV=production RAILS_MASTER_KEY=<YOUR_MASTER_KEY> DATABASE_URL=<YOUR_DB_URL>
+
+# SystemD will not run puma even if it is in your path. You must specify
+# an absolute URL to puma. For example /usr/local/bin/puma
+# Alternatively, create a binstub with `bundle binstubs puma --path ./sbin` in the WorkingDirectory
+ExecStart=/home/puma/.rvm/bin/rvm-exec 2.6.2 <YOUR_APP_PUMA_BIN_PATH> -C <YOUR_APP_PUMA_CONFIG_PATH>
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
